@@ -2,7 +2,7 @@ import csv
 import cv2
 import numpy as np
 
-dataPath = 'data1/'
+dataPath = 'data/'
 
 lines = []
 print('Reading from: ./{}'.format(dataPath))
