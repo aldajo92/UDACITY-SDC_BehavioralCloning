@@ -85,7 +85,7 @@ $RECYCLE.BIN/
 
 # Ignore data added for training
 *.zip
-
+data
 IMG
 driving_log.csv
 
