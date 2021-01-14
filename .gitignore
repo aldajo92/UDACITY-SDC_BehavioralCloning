@@ -86,4 +86,7 @@ $RECYCLE.BIN/
 # Ignore data added for training
 *.zip
 
+IMG
+driving_log.csv
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,linux
