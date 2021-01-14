@@ -83,4 +83,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Ignore data added for training
+*.zip
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,windows,linux
