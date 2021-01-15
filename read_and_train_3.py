@@ -27,7 +27,7 @@ X_train = np.array(images)
 Y_train = np.array(measurements)
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda
+from keras.layers import Flatten, Dense, Lambda, Conv2D, MaxPool2D
 from keras.layers.convolutional import Convolution2D
 
 model = Sequential()
