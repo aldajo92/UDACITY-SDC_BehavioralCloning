@@ -23,15 +23,15 @@ for line in lines:
     measurement = float(line[3])
     measurements.append(measurement)
 
-augmented_images, augmentend_measurements = [], []
+augmented_images, augmented_measurements = [], []
 for image, measurement in zip(image, measurements):
     augmented_images.append(image)
-    augmentend_measurements.append(measurement)
+    augmented_measurements.append(measurement)
     augmented_images.append(cv2.flip(image,1))
-    augmentend_measurements.append(measurement*-1.0)
+    augmented_measurements.append(measurement*-1.0)
 
 X_train = np.array(augmented_images)
-Y_train = np.array(augmentend_measurements)
+Y_train = np.array(augmented_measurements)
 
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Conv2D, MaxPool2D
