@@ -4,6 +4,15 @@ import numpy as np
 
 dataPath = 'data/'
 
+correction = 0.2 # this is a parameter to tune
+
+def get_image_from_sourcepath(source_path):
+    filename = source_path.split('/')[-1]
+    current_path = './{}IMG/{}'.format(dataPath,filename)
+    image = cv2.imread(current_path)
+    return image
+
+
 lines = []
 print('Reading from: ./{}'.format(dataPath))
 with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
@@ -14,14 +23,18 @@ with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
 
 images = []
 measurements = []
+
 for line in lines:
-    source_path = line[0]
-    filename = source_path.split('/')[-1]
-    current_path = './{}IMG/{}'.format(dataPath,filename)
-    image = cv2.imread(current_path)
-    images.append(image)
-    measurement = float(line[3])
-    measurements.append(measurement)
+    steering_center = float(line[3])
+    steering_left = steering_center + correction
+    steering_right = steering_center - correction
+
+    image_center = get_image_from_sourcepath(line[0])
+    image_left = get_image_from_sourcepath(line[1])
+    image_right = get_image_from_sourcepath(line[2])
+    
+    images.extend(image_center, image_left, image_right)
+    measurements.extend(steering_center, steering_left, steering_right)
 
 augmented_images, augmented_measurements = [], []
 for image, measurement in zip(images, measurements):
@@ -34,12 +47,11 @@ X_train = np.array(augmented_images)
 Y_train = np.array(augmented_measurements)
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Conv2D, MaxPool2D, Cropping2D
+from keras.layers import Flatten, Dense, Lambda, Conv2D, MaxPool2D
 from keras.layers.convolutional import Convolution2D
 
 model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
-model.add(Cropping2D(cropping=((70,25),(0,0))))
 model.add(Conv2D(filters=6, kernel_size=(5, 5), activation='relu'))
 model.add(MaxPool2D())
 model.add(Conv2D(filters=6, kernel_size=(5, 5), activation='relu'))
