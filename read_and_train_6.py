@@ -2,7 +2,8 @@ import csv
 import cv2
 import numpy as np
 
-dataPath = 'data/'
+dataPath = 'data'
+driving_log_list = ['driving_log.csv', 'driving_log_2.csv']
 
 correction = 0.5 # this is a parameter to tune
 
@@ -12,14 +13,20 @@ def get_image_from_sourcepath(source_path):
     image = cv2.imread(current_path)
     return image
 
+def read_lines_from_filename(filename):
+    local_lines = []
+    with open('./{}/{}'.format(dataPath, filename)) as csvfile:
+        reader = csv.reader(csvfile)
+        for line in reader:
+            local_lines.append(line)
+    return local_lines
 
 lines = []
-print('Reading from: ./{}'.format(dataPath))
-with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
-    reader = csv.reader(csvfile)
-    for line in reader:
-        lines.append(line)
-
+print('Reading from: ./{}/'.format(dataPath))
+for d_log in driving_log_list:
+    print('Reading file: {}'.format(dataPath))
+    lines_readed = read_lines_from_filename(d_log)
+    lines.extend(lines_readed)
 
 images = []
 measurements = []
