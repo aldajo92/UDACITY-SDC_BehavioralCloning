@@ -33,8 +33,8 @@ for line in lines:
     image_left = get_image_from_sourcepath(line[1])
     image_right = get_image_from_sourcepath(line[2])
     
-    images.extend(image_center, image_left, image_right)
-    measurements.extend(steering_center, steering_left, steering_right)
+    images.extend([image_center, image_left, image_right])
+    measurements.extend([steering_center, steering_left, steering_right])
 
 augmented_images, augmented_measurements = [], []
 for image, measurement in zip(images, measurements):
