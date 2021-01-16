@@ -24,7 +24,7 @@ for line in lines:
     measurements.append(measurement)
 
 augmented_images, augmented_measurements = [], []
-for image, measurement in zip(image, measurements):
+for image, measurement in zip(images, measurements):
     augmented_images.append(image)
     augmented_measurements.append(measurement)
     augmented_images.append(cv2.flip(image,1))
@@ -51,4 +51,4 @@ model.add(Dense(1))
 model.compile(loss = 'mse', optimizer = 'adam')
 model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=2)
 
-model.save('{}model.h5'.format(dataPath))
+model.save('model.h5'.format(dataPath))
