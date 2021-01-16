@@ -4,7 +4,7 @@ import numpy as np
 
 dataPath = 'data/'
 
-correction = 0.2 # this is a parameter to tune
+correction = 0.5 # this is a parameter to tune
 
 def get_image_from_sourcepath(source_path):
     filename = source_path.split('/')[-1]
@@ -63,6 +63,6 @@ model.add(Dense(84))
 model.add(Dense(1))
 
 model.compile(loss = 'mse', optimizer = 'adam')
-model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=2)
+model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=4)
 
 model.save('model.h5'.format(dataPath))
