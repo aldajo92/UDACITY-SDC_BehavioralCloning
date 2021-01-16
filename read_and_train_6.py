@@ -3,13 +3,13 @@ import cv2
 import numpy as np
 
 dataPath = 'data'
-driving_log_list = ['driving_log.csv', 'driving_log_2.csv']
+driving_log_list = {'driving_log.csv':'IMG', 'driving_log_2.csv':'IMG2'}
 
 correction = 0.5 # this is a parameter to tune
 
-def get_image_from_sourcepath(source_path):
+def get_image_from_sourcepath(source_path, folder):
     filename = source_path.split('/')[-1]
-    current_path = './{}IMG/{}'.format(dataPath,filename)
+    current_path = './{}/{}/{}'.format(dataPath,folder,filename)
     image = cv2.imread(current_path)
     return image
 
@@ -21,27 +21,25 @@ def read_lines_from_filename(filename):
             local_lines.append(line)
     return local_lines
 
-lines = []
-print('Reading from: ./{}/'.format(dataPath))
-for d_log in driving_log_list:
-    print('Reading file: {}'.format(dataPath))
-    lines_readed = read_lines_from_filename(d_log)
-    lines.extend(lines_readed)
-
 images = []
 measurements = []
 
-for line in lines:
-    steering_center = float(line[3])
-    steering_left = steering_center + correction
-    steering_right = steering_center - correction
+print('Reading from: ./{}/'.format(dataPath))
+for (d_log, folder) in driving_log_list.items():
+    print('Reading file: {}'.format(dataPath))
+    lines = read_lines_from_filename(d_log)
 
-    image_center = get_image_from_sourcepath(line[0])
-    image_left = get_image_from_sourcepath(line[1])
-    image_right = get_image_from_sourcepath(line[2])
-    
-    images.extend([image_center, image_left, image_right])
-    measurements.extend([steering_center, steering_left, steering_right])
+    for line in lines:
+        steering_center = float(line[3])
+        steering_left = steering_center + correction
+        steering_right = steering_center - correction
+
+        image_center = get_image_from_sourcepath(line[0], folder)
+        image_left = get_image_from_sourcepath(line[1], folder)
+        image_right = get_image_from_sourcepath(line[2], folder)
+        
+        images.extend([image_center, image_left, image_right])
+        measurements.extend([steering_center, steering_left, steering_right])
 
 augmented_images, augmented_measurements = [], []
 for image, measurement in zip(images, measurements):
