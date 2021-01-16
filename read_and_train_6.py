@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 dataPath = 'data'
-driving_log_list = {'driving_log.csv':'IMG', 'driving_log_2.csv':'IMG2'}
+driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
 
 correction = 0.5 # this is a parameter to tune
 
