@@ -1,9 +1,7 @@
 # Behavioral Cloning #
 
 ## Introduction. ##
-This project has the main purpose to drive a Car using the concepts learned with Keras and Deep Neuronal Networks, through the Udacity Self Drivin Car emulator. The input and output data comes from the manual mode inside the emulator, representing the actions of the user who drives the car and the idea is to get a way to "train" a system able to do this job. For this reason, this project receives the name Behavioral Cloning.
-
-## Behavioral Cloning Project ##
+This project has the main purpose to drive a car using the concepts learned with Keras and Deep Neuronal Networks, through the Udacity Self Drivin Car emulator. The input and output data comes from the manual mode inside the emulator, representing the actions of the user who drives the car and the idea is to get a way to "train" a system able to do this job. For this reason, this project receives the name Behavioral Cloning.
 
 The goals of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -13,12 +11,12 @@ The goals of this project are the following:
 <!-- * Summarize the results with a written report -->
 
 ## How to get and run emulator? ##
-This project requires to download the emulator available for Windows, Linux: [self-driving-car-sim](https://github.com/udacity/self-driving-car-sim/releases)
+This project requires to download the emulator available for Windows, Linux: [self-driving-car-sim](https://github.com/udacity/self-driving-car-sim/releases).
 
 Mac users need to use another repository due the missing updates in the code, so I found this usefull repository that contains an available version of the emulator for MacOS Catalina:
 [CarND-MacCatalinaSimulator](https://github.com/endymioncheung/CarND-MacCatalinaSimulator).
 
-The emulator is a executable program, so it not require any compilation process.
+The emulator is a executable program. So, it doesn't require any compilation process.
 
 <!-- ## How the environment was setup to get the results? -->
 
@@ -39,7 +37,7 @@ The following are the rubrics considered for this project: [Rubric points](https
 ## Files included in this project ##
 
 This project includes the following files:
-* read_train_final.py containing the script to create and train the model.
+* model.py containing the script to create and train the model.
 * drive.py for driving the car in autonomous mode.
 * model.h5 containing a trained convolution neural network.
 
@@ -50,6 +48,13 @@ python drive.py model.h5
 ```
 
 # How this project was developed? #
+## System considerations ##
+- The main purpose of this project is to drive a car on a track, so in this context, the car is the system that needs to be controlled or driven. 
+- To drive the car, we have two inputs for the car system: steering, and throttle.
+- When the car is driven, it provides information about their position inside the track throught three images provided by the left, center and right camera.
+- The steering and throttle introduced in the car, generates left, center and right images. The following image is a better representation about this system:
+  ![System Diagram](images/01.SystemDiagram.png)
+- 
 
 ## Structure data
 The first step to develop this work was define an strategy to manage the information provided by the emulator. So, after understanding how the emulator works and how to export data generated after drive the car in manual mode using the record button, different experiments were made to get input/output data. The input data is the image captured by the car, and the ouput data is the steering value asociated. 
@@ -61,6 +66,8 @@ The first step to develop this work was define an strategy to manage the informa
 
 Based on the last justification, the files was readed with the follogin function:
 ```Python
+import csv
+
 # dataPath is the folder where all IMG's and driving_log's are stored
 dataPath = 'data'
 
@@ -77,7 +84,8 @@ def read_lines_from_filename(filename):
 
 And a iteration over a dictionary was used to read each experiment, as follows:
 ```Python
-print('Reading from: ./{}/'.format(dataPath))
+driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
+
 for (d_log, folder) in driving_log_list.items():
     print('Reading file: {}'.format(d_log))
     lines = read_lines_from_filename(d_log)
@@ -182,3 +190,4 @@ After the collection process, I had X number of data points. I then preprocessed
 I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary. -->
+
