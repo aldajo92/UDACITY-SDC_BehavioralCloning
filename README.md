@@ -53,7 +53,7 @@ python drive.py model.h5
 - To drive the car, we have two inputs for the car system: steering, and throttle.
 - When the car is driven, it provides information about their position inside the track throught three images provided by the left, center and right camera.
 - The steering and throttle introduced in the car, generates left, center and right images. The following image is a better representation about this system:
-  ![System Diagram](images/01.SystemDiagram.png)
+  ![System Diagram](images/01.SystemDiagramCar.png)
 - 
 
 ## Structure data
