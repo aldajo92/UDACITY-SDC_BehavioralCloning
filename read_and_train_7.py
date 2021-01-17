@@ -5,7 +5,7 @@ import numpy as np
 dataPath = 'data'
 driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
 
-correction = 0.5 # this is a parameter to tune
+correction = 0.2 # this is a parameter to tune
 
 def get_image_from_sourcepath(source_path, folder):
     filename = source_path.split('/')[-1]
@@ -58,6 +58,7 @@ from keras.layers.convolutional import Convolution2D
 model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
 model.add(Cropping2D(cropping=((70,25),(0,0))))
+model.add(Cropping2D(cropping=((70,25),(0,0))))
 model.add(Conv2D(filters=24, kernel_size=(5, 5), strides=(2,2), activation='relu'))
 model.add(Conv2D(filters=36, kernel_size=(5, 5), strides=(2,2), activation='relu'))
 model.add(Conv2D(filters=48, kernel_size=(3, 3), strides=(2,2), activation='relu'))
@@ -69,6 +70,6 @@ model.add(Dense(10))
 model.add(Dense(1))
 
 model.compile(loss = 'mse', optimizer = 'adam')
-model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=4)
+model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=3)
 
 model.save('model.h5'.format(dataPath))
