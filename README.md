@@ -53,7 +53,9 @@ python drive.py model.h5
 - To drive the car, we have two inputs for the car system: steering, and throttle.
 - When the car is driven, it provides information about their position inside the track throught three images provided by the left, center and right camera.
 - The steering and throttle introduced in the car, generates left, center and right images. The following image is a better representation about this system:
+  
   ![System Diagram](images/01.SystemDiagramCar.png)
+
 - The idea is to use a feedback system able to drive the car (The Neuronal Network), able to receive the images as input to generate the Steering value. Throttle will be a constant value for practical purposes.
 - Left, Center and Right images are used for the training process, but only the Center one will be considered as the input for our network.
 
@@ -99,7 +101,7 @@ This was the final process found to get a better way to read the information.
 
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions provided in the project description.
 
-## Model Architecture defined
+## Model Architecture
 In this project, two model arquitecture was tested:
 - LeNet
  
@@ -109,9 +111,14 @@ In this project, two model arquitecture was tested:
 
 ![Nvidia](images/02.NvidiaArchitecture.png)
 
-Lenet was the first approach used. When it was used, present some issues with stability. So the second model 
+Lenet was the first approach used. When it was used, present some issues with stability. So the second model correspond to the nvidia approach, which have a nice documentation in the following link: [End-to-End Deep Learning for Self-Driving Cars](https://developer.nvidia.com/blog/deep-learning-self-driving-cars/). The last one provides more stability using the correct data to train the model.
 
-Nvidia was the second approach based on the project description sugestion. This approach helps with stability using the correct data to train the model.
+## Multiple image approach ##
+Left, Center and Right images are used for the training process, but only the Center one will be considered as the input for our network. This approach comes from the following image provided by the udacity Nanodegree course:
+
+![System Diagram](images/01.MultipleCameras.png)
+
+
 
 <!-- ## Model Architecture and Training Strategy
 
