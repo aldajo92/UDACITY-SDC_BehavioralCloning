@@ -2,6 +2,7 @@ import csv
 import cv2
 import numpy as np
 
+# dataPath: folder path where all IMG's and driving_log's are stored
 dataPath = 'data'
 driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
 
@@ -13,6 +14,8 @@ def get_image_from_sourcepath(source_path, folder):
     image = cv2.imread(current_path)
     return image
 
+# filename: String path asociated with the specific csv file that contains the relation between images an values (driving_log).
+# local_lines : list of all rows in the csv file. Each row have information about the image paths and values as an inner list.
 def read_lines_from_filename(filename):
     local_lines = []
     with open('./{}/{}'.format(dataPath, filename)) as csvfile:

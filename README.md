@@ -71,11 +71,11 @@ Based on the last justification, the files was readed with the follogin function
 ```Python
 import csv
 
-# dataPath is the folder where all IMG's and driving_log's are stored
+# dataPath: folder path where all IMG's and driving_log's are stored
 dataPath = 'data'
 
-# filename is the value asociated with the specific file that contains the relation between images an values (driving_log)
-# the function returns a list of lines (list of lists).
+# filename: path asociated with the specific csv file that contains the relation between images an values (driving_log).
+# local_lines : list of all rows in the csv file. Each row have information about the image paths and values (list of lists).
 def read_lines_from_filename(filename):
     local_lines = []
     with open('./{}/{}'.format(dataPath, filename)) as csvfile:
