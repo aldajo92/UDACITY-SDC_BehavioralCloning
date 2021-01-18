@@ -138,14 +138,15 @@ for line in lines:
 
 ## Scenarios considered
 The following are the scenarios cosidered to get the data to train the models:
-- Driving car on the center of the lane, one lap, on default direction.
-- Driving car on the center of the lane, one lap, on opposite direction.
-- Driving car in curved zig-zag way, respect to the lane, one lap, on default direction.
+- Centering Scenario: Driving car on the center of the lane, one lap, on default direction.
+- Reverse Scenario: Driving car on the center of the lane, one lap, on opposite direction.
+- ZigZag Scenario: Driving car in curved zig-zag way, respect to the lane, one lap, on default direction.
 
 ## Evolution of the code ##
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
 
-- read_and_train_1.py: This script was the entry point to read and train a basic model.
+- read_and_train_1.py: This script was the entry point to read and train a basic model. The input data used to train the model was the Centering Scenario.
+- read_and_train_2.py:
 
 <!-- ## Model Architecture and Training Strategy
 
