@@ -139,8 +139,16 @@ for line in lines:
 ## Scenarios considered
 The following are the scenarios cosidered to get the data to train the models:
 - Centering Scenario: Driving car on the center of the lane, one lap, on default direction.
-- Reverse Scenario: Driving car on the center of the lane, one lap, on opposite direction.
+
+  ![Centered and default direcction](media/CenterLane.gif)
+
+- Opposite Scenario: Driving car on the center of the lane, one lap, on opposite direction.
+  
+  ![Centered and Opposite to default direcction](media/OppositeLane.gif)
+
 - ZigZag Scenario: Driving car in curved zig-zag way, respect to the lane, one lap, on default direction.
+  
+  ![Centered in the lane](media/ZigZagLane.gif)
 
 ## Evolution of the code ##
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
@@ -232,3 +240,8 @@ I finally randomly shuffled the data set and put Y% of the data into a validatio
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary. -->
 
+## References ##
+[]
+
+## Additional Information ##
+[1] Convert videos to gif: https://ezgif.com/
