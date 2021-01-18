@@ -140,15 +140,15 @@ for line in lines:
 The following are the scenarios cosidered to get the data to train the models:
 - Centering Scenario: Driving car on the center of the lane, one lap, on default direction.
 
-  ![Centered and default direcction](media/CenterLane.gif)
+  ![Centered and default direcction](media/../images/03.sc1.png) ![Centered and default direcction](media/CenterLane.gif)
 
 - Opposite Scenario: Driving car on the center of the lane, one lap, on opposite direction.
   
-  ![Centered and Opposite to default direcction](media/OppositeLane.gif)
+  ![Centered and default direcction](media/../images/03.sc2.png) ![Centered and Opposite to default direcction](media/OppositeLane.gif)
 
 - ZigZag Scenario: Driving car in curved zig-zag way, respect to the lane, one lap, on default direction.
   
-  ![Centered in the lane](media/ZigZagLane.gif)
+  ![Centered and default direcction](media/../images/03.sc3.png) ![Centered in the lane](media/ZigZagLane.gif)
 
 ## Evolution of the code ##
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
