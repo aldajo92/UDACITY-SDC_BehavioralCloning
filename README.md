@@ -54,7 +54,8 @@ python drive.py model.h5
 - When the car is driven, it provides information about their position inside the track throught three images provided by the left, center and right camera.
 - The steering and throttle introduced in the car, generates left, center and right images. The following image is a better representation about this system:
   ![System Diagram](images/01.SystemDiagramCar.png)
-- 
+- The idea is to use a feedback system able to drive the car (The Neuronal Network), able to receive the images as input to generate the Steering value. Throttle will be a constant value for practical purposes.
+- Left, Center and Right images are used for the training process, but only the Center one will be considered as the input for our network.
 
 ## Structure data
 The first step to develop this work was define an strategy to manage the information provided by the emulator. So, after understanding how the emulator works and how to export data generated after drive the car in manual mode using the record button, different experiments were made to get input/output data. The input data is the image captured by the car, and the ouput data is the steering value asociated. 
@@ -101,7 +102,12 @@ The evolution of the final code is showed on files `read_and_traing_*.py` that w
 ## Model Architecture defined
 In this project, two model arquitecture was tested:
 - LeNet
+ 
+![LeNet](images/01.LenetArquitechture.png)
+
 - Nvidia
+
+![Nvidia](images/02.NvidiaArchitecture.png)
 
 Lenet was the first approach used. When it was used, present some issues with stability. So the second model 
 
