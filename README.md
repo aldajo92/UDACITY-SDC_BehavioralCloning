@@ -116,7 +116,7 @@ Left, Center and Right images are used for the training process, but only the Ce
 
 ![System Diagram](images/01.MultipleCameras.png)
 
-This aproach was implemented in the following way in the script:
+This aproach was implemented in the script as follows:
 ```Python
 # lines: array that contains each row of the csv file
 # line: row that contains the image path for images, and also the steering and throttle values associated.
@@ -154,7 +154,7 @@ The following are the scenarios cosidered to get the data to train the models:
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
 
 - read_and_train_1.py: This script was the entry point to read and train a basic model. The input data used to train the model was the Centering Scenario.
-- read_and_train_2.py:
+- read_and_train_2.py: This script uses a lambda layer to convert images from color to gray, calculating the mean for each pixes position in each rgb channel.
 
 <!-- ## Model Architecture and Training Strategy
 
@@ -240,8 +240,8 @@ I finally randomly shuffled the data set and put Y% of the data into a validatio
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary. -->
 
-## References ##
-[]
 
-## Additional Information ##
+## Additional resources ##
 [1] Convert videos to gif: https://ezgif.com/
+
+[2] Resize images: https://resizeimage.net/

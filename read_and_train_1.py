@@ -12,9 +12,13 @@ with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
     for line in reader:
         lines.append(line)
 
-
+# images: global list that contains all the images used to train the model as the input
+# measurements: global list that contains all measurements used to train the model as the output
 images = []
 measurements = []
+
+# lines: list that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated, as a list.
 for line in lines:
     source_path = line[0]
     filename = source_path.split('/')[-1]

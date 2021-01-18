@@ -13,8 +13,8 @@ def get_image_from_sourcepath(source_path):
     image = cv2.imread(current_path)
     return image
 
-
 lines = []
+
 print('Reading from: ./{}'.format(dataPath))
 with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
     reader = csv.reader(csvfile)
@@ -22,9 +22,13 @@ with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
         lines.append(line)
 
 
+# images: global list that contains all the images used to train the model as the input
+# measurements: global list that contains all measurements used to train the model as the output
 images = []
 measurements = []
 
+# lines: list that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated, as a list.
 for line in lines:
     steering_center = float(line[3])
     steering_left = steering_center + correction

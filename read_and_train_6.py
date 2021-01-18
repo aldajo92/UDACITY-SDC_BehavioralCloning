@@ -24,9 +24,16 @@ def read_lines_from_filename(filename):
             local_lines.append(line)
     return local_lines
 
+# images: global list that contains all the images used to train the model as the input
+# measurements: global list that contains all measurements used to train the model as the output
 images = []
 measurements = []
 
+# lines: list that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated, as a list.
+# images: global array that contains all the images used to train the model as the input
+# measurements: global array that contains all measurements used to train the model as the output
+# correction: a parameter that needs to be tuned. It provides a correction in the scenario when the car sees the lane lines.
 print('Reading from: ./{}/'.format(dataPath))
 for (d_log, folder) in driving_log_list.items():
     print('Reading file: {}'.format(d_log))
