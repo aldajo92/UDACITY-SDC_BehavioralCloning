@@ -48,7 +48,7 @@ python drive.py model.h5
 ```
 
 # How this project was developed? #
-## System considerations ##
+## Considerations ##
 - The main purpose of this project is to drive a car on a track, so in this context, the car is the system that needs to be controlled or driven. 
 - To drive the car, we have two inputs for the car system: steering, and throttle.
 - When the car is driven, it provides information about their position inside the track throught three images provided by the left, center and right camera.
@@ -59,13 +59,13 @@ python drive.py model.h5
 - The idea is to use a feedback system able to drive the car (The Neuronal Network), able to receive the images as input to generate the Steering value. Throttle will be a constant value for practical purposes.
 - Left, Center and Right images are used for the training process, but only the Center one will be considered as the input for our network.
 
-## Structure data
+## Files management for different scenarios
 The first step to develop this work was define an strategy to manage the information provided by the emulator. So, after understanding how the emulator works and how to export data generated after drive the car in manual mode using the record button, different experiments were made to get input/output data. The input data is the image captured by the car, and the ouput data is the steering value asociated. 
 
 - The first consideration to manage different scenarios, was try to put all of them in the same files, playing with the record and pause button after do the specif experiment, trying to store all information in the same `IMG` folder and `data_driven.csv` file. This process result complicated and avoid to reuse or remove specific group of images asociated with the experiment, due the amount of data collected, because find the specific images and values could be a worst way to do it.
 - The next consideration was to get the data of the specific scenario in a single session inside the emulator. So, when the data is collected after do the specific experiment, the manual mode is stopped, and the `IMG` folder and `driving_log.csv` are renamed according to the number of the experiment idenfied, so the nomenclature for the image folder and `.csv` file was defined as respectively: `IMG<number>` and `driving_log<number>.csv`. As an example, for the experiment `3`, the files generated was renamed as `IMG3` and `driving_log3.csv`.
 
-## Read Data before train the model
+## Read data before train the model
 
 Based on the last justification, the files was readed with the follogin function:
 ```Python
@@ -97,9 +97,7 @@ for (d_log, folder) in driving_log_list.items():
         # read paths an values stored in the line list
 ```
 
-This was the final process found to get a better way to read the information. 
-
-The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions provided in the project description.
+This method was included in the final script, model.py.
 
 ## Model Architecture
 In this project, two model arquitecture was tested:
@@ -122,6 +120,9 @@ This aproach was implemented in the following way in the script:
 ```Python
 # lines: array that contains each row of the csv file
 # line: row that contains the image path for images, and also the steering and throttle values associated.
+# images: global array that contains all the images used to train the model as the input
+# measurements: global array that contains all measurements used to train the model as the output
+# correction: a parameter that needs to be tuned. It provides a correction in the scenario when the car sees the lane lines.
 for line in lines:
     steering_center = float(line[3])
     steering_left = steering_center + correction
@@ -135,7 +136,16 @@ for line in lines:
     measurements.extend([steering_center, steering_left, steering_right])
 ```
 
+## Scenarios considered
+The following are the scenarios cosidered to get the data to train the models:
+- Driving car on the center of the lane, one lap, on default direction.
+- Driving car on the center of the lane, one lap, on opposite direction.
+- Driving car in curved zig-zag way, respect to the lane, one lap, on default direction.
 
+## Evolution of the code ##
+The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
+
+- read_and_train_1.py: This script was the entry point to read and train a basic model.
 
 <!-- ## Model Architecture and Training Strategy
 
