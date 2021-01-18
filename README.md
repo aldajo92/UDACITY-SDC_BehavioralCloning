@@ -118,6 +118,23 @@ Left, Center and Right images are used for the training process, but only the Ce
 
 ![System Diagram](images/01.MultipleCameras.png)
 
+This aproach was implemented in the following way in the script:
+```Python
+# lines: array that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated.
+for line in lines:
+    steering_center = float(line[3])
+    steering_left = steering_center + correction
+    steering_right = steering_center - correction
+
+    image_center = get_image_from_sourcepath(line[0], folder)
+    image_left = get_image_from_sourcepath(line[1], folder)
+    image_right = get_image_from_sourcepath(line[2], folder)
+    
+    images.extend([image_center, image_left, image_right])
+    measurements.extend([steering_center, steering_left, steering_right])
+```
+
 
 
 <!-- ## Model Architecture and Training Strategy
