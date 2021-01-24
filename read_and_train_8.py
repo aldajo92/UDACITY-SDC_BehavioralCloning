@@ -4,9 +4,14 @@ import numpy as np
 
 # dataPath: folder path where all IMG's and driving_log's are stored
 dataPath = 'data'
-driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
+driving_log_list = {
+    'driving_log1.csv':'IMG1',
+    'driving_log2.csv':'IMG2',
+    'driving_log5.csv':'IMG5',
+    'driving_log7.csv':'IMG7',
+}
 
-correction = 0.2 # this is a parameter to tune
+correction = 0.5 # this is a parameter to tune
 
 def get_image_from_sourcepath(source_path, folder):
     filename = source_path.split('/')[-1]
