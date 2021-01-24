@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # dataPath: folder path where all IMG's and driving_log's are stored
-dataPath = 'data'
+dataPath = 'train'
 driving_log_list = {
     'driving_log1.csv':'IMG1',
     'driving_log2.csv':'IMG2',

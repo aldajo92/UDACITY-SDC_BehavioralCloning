@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # dataPath: folder path where all IMG's and driving_log's are stored
-dataPath = 'data/'
+dataPath = 'train/'
 
 correction = 0.2 # this is a parameter to tune
 

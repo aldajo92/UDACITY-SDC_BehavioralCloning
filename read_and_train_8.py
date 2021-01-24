@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # dataPath: folder path where all IMG's and driving_log's are stored
-dataPath = 'data'
+dataPath = 'train'
 driving_log_list = {
     'driving_log1.csv':'IMG1',
     'driving_log2.csv':'IMG2',
@@ -68,7 +68,6 @@ from keras.layers.convolutional import Convolution2D
 
 model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
-model.add(Cropping2D(cropping=((70,25),(0,0))))
 model.add(Cropping2D(cropping=((70,25),(0,0))))
 model.add(Conv2D(filters=24, kernel_size=(5, 5), strides=(2,2), activation='relu'))
 model.add(Conv2D(filters=36, kernel_size=(5, 5), strides=(2,2), activation='relu'))
