@@ -167,8 +167,16 @@ The evolution of the final code is showed on files `read_and_traing_*.py` that w
 - read_and_train_3.py: This script uses the LeNet architecture, 
 
 
-## Some r ##
+## Parameter used to train the model ##
+- Model = Nvidia
+- Correction = 0.3
+- Validation split = 20%
+- Dropout = 20%
+- Optimizer = Adam
 
+The result obtained with these parameters is:
+
+![Result](./media/result1.gif)
 
 <!-- ## Model Architecture and Training Strategy
 
