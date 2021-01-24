@@ -136,7 +136,7 @@ for line in lines:
     measurements.extend([steering_center, steering_left, steering_right])
 ```
 
-## Scenarios considered
+## Scenarios considered ##
 The following are the scenarios cosidered to get the data to train the models:
 - Centering Scenario: Driving car on the center of the lane, one lap, on default direction.
 
@@ -150,12 +150,22 @@ The following are the scenarios cosidered to get the data to train the models:
   
   ![Centered and default direcction](media/../images/03.sc3.png) ![Centered in the lane](media/ZigZagLane.gif)
 
+## Data augmentation ##
+Images readed was flippered horizontally to add improve the model, with their measurement inverted in sign. This implementation is made due the car in a track, always turn on one side more ofthen than the other one, so we use this strategy to generalize the model. The following code is an example about how this approach was implemented:
+
+```Python
+import numpy as np
+image_flipped = np.fliplr(image)
+measurement_flipped = -measurement
+```
+
+
 ## Evolution of the code ##
 The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
 
 - read_and_train_1.py: This script was the entry point to read and train a basic model. The input data used to train the model was the Centering Scenario.
 - read_and_train_2.py: This script uses a lambda layer to convert images from color to gray, calculating the mean for each pixes position in each rgb channel.
-- read_and_train_3.py: This script uses 
+- read_and_train_3.py: This script uses the LeNet architecture, 
 
 <!-- ## Model Architecture and Training Strategy
 
