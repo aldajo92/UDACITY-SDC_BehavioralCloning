@@ -11,7 +11,7 @@ driving_log_list = {
     'driving_log7.csv':'IMG7',
 }
 
-correction = 0.5 # this is a parameter to tune
+correction = 0.3 # this is a parameter to tune
 
 def get_image_from_sourcepath(source_path, folder):
     filename = source_path.split('/')[-1]
@@ -73,7 +73,7 @@ model.add(Conv2D(filters=24, kernel_size=(5, 5), strides=(2,2), activation='relu
 model.add(Conv2D(filters=36, kernel_size=(5, 5), strides=(2,2), activation='relu'))
 model.add(Conv2D(filters=48, kernel_size=(3, 3), strides=(2,2), activation='relu'))
 model.add(Conv2D(filters=64, kernel_size=(3, 3), strides=(2,2), activation='relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.2))
 model.add(Flatten())
 model.add(Dense(100))
 model.add(Dense(50))
