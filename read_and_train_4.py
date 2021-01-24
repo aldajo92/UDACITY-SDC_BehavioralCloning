@@ -2,7 +2,8 @@ import csv
 import cv2
 import numpy as np
 
-dataPath = 'data/'
+# dataPath: folder path where all IMG's and driving_log's are stored
+dataPath = 'train/'
 
 lines = []
 print('Reading from: ./{}'.format(dataPath))
@@ -11,9 +12,13 @@ with open('./{}driving_log.csv'.format(dataPath)) as csvfile:
     for line in reader:
         lines.append(line)
 
-
+# images: global list that contains all the images used to train the model as the input
+# measurements: global list that contains all measurements used to train the model as the output
 images = []
 measurements = []
+
+# lines: list that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated, as a list.
 for line in lines:
     source_path = line[0]
     filename = source_path.split('/')[-1]
@@ -51,4 +56,4 @@ model.add(Dense(1))
 model.compile(loss = 'mse', optimizer = 'adam')
 model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=2)
 
-model.save('model.h5'.format(dataPath))
+model.save('model.h5')

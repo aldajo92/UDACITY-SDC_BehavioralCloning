@@ -2,8 +2,14 @@ import csv
 import cv2
 import numpy as np
 
-dataPath = 'data'
-driving_log_list = {'driving_log.csv':'IMG', 'driving_log2.csv':'IMG2'}
+# dataPath: folder path where all IMG's and driving_log's are stored
+dataPath = 'train'
+driving_log_list = {
+    'driving_log1.csv':'IMG1',
+    'driving_log2.csv':'IMG2',
+    'driving_log5.csv':'IMG5',
+    'driving_log7.csv':'IMG7',
+}
 
 correction = 0.5 # this is a parameter to tune
 
@@ -24,6 +30,11 @@ def read_lines_from_filename(filename):
 images = []
 measurements = []
 
+# lines: array that contains each row of the csv file
+# line: row that contains the image path for images, and also the steering and throttle values associated.
+# images: global array that contains all the images used to train the model as the input
+# measurements: global array that contains all measurements used to train the model as the output
+# correction: a parameter that needs to be tuned. It provides a correction in the scenario when the car sees the lane lines.
 print('Reading from: ./{}/'.format(dataPath))
 for (d_log, folder) in driving_log_list.items():
     print('Reading file: {}'.format(d_log))
@@ -58,10 +69,10 @@ from keras.layers.convolutional import Convolution2D
 model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
 model.add(Cropping2D(cropping=((70,25),(0,0))))
-model.add(Conv2D(filters=24, kernel_size=(5, 5), strides=(2,2), activation='relu'))
-model.add(Conv2D(filters=36, kernel_size=(5, 5), strides=(2,2), activation='relu'))
-model.add(Conv2D(filters=48, kernel_size=(3, 3), strides=(2,2), activation='relu'))
-model.add(Conv2D(filters=64, kernel_size=(3, 3), strides=(2,2), activation='relu'))
+model.add(Conv2D(filters=24, kernel_size=(5, 5), subsample=(2,2), activation='relu'))
+model.add(Conv2D(filters=36, kernel_size=(5, 5), subsample=(2,2), activation='relu'))
+model.add(Conv2D(filters=48, kernel_size=(3, 3), subsample=(2,2), activation='relu'))
+model.add(Conv2D(filters=64, kernel_size=(3, 3), subsample=(2,2), activation='relu'))
 model.add(Flatten())
 model.add(Dense(100))
 model.add(Dense(50))
@@ -69,6 +80,6 @@ model.add(Dense(10))
 model.add(Dense(1))
 
 model.compile(loss = 'mse', optimizer = 'adam')
-model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=4)
+model.fit(X_train, Y_train, validation_split = 0.2, shuffle = True, nb_epoch=3)
 
-model.save('model.h5'.format(dataPath))
+model.save('model.h5')
