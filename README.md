@@ -160,11 +160,11 @@ measurement_flipped = -measurement
 ```
 
 ## Evolution of the code ##
-The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course:
+The evolution of the final code is showed on files `read_and_traing_*.py` that was based on the instructions and documentation provided in the course.
 
-- read_and_train_1.py: This script was the entry point to read and train a basic model. The input data used to train the model was the Centering Scenario.
+<!-- - read_and_train_1.py: This script was the entry point to read and train a basic model. The input data used to train the model was the Centering Scenario.
 - read_and_train_2.py: This script uses a lambda layer to convert images from color to gray, calculating the mean for each pixes position in each rgb channel.
-- read_and_train_3.py: This script uses the LeNet architecture, 
+- read_and_train_3.py: This script uses the LeNet architecture,  -->
 
 
 ## Parameter used to train the model ##
